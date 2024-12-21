@@ -1,2 +1,2 @@
 yfinance
-sklearn
+scikit-learn
