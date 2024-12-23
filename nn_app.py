@@ -17,8 +17,8 @@ with st.expander("Quick Guide"):
     trading volume, and other financial indicators. Upload a CSV file with the relevant data to 
     train the model and make predictions""")
 # Fetch default stock data (Apple Inc.) from Yahoo Finance
-def fetch_default_data():
-    stock_data = yf.download("AAPL", start="2023-01-01", end="2023-12-31")
+def fetch_default_data(start_date, end_date):
+    stock_data = yf.download("AAPL", start=start_date, end=end_date)
     stock_data.reset_index(inplace=True)
     stock_data = stock_data[["Open", "High", "Low", "Close", "Volume"]]
     return stock_data
