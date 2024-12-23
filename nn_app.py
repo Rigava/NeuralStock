@@ -19,8 +19,10 @@ with st.expander("Quick Guide"):
 # Fetch default stock data (Apple Inc.) from Yahoo Finance
 def fetch_default_data(symbol, start_date, end_date):
     stock_data = yf.download(symbol, group_by = 'Ticker',start=start_date, end=end_date)
-    stock_data.index.name = "Date"  # Rename index to Date
-    stock_data.reset_index(inplace=True)
+    # Transform the DataFrame: stack the ticker symbols to create a multi-index (Date, Ticker), then reset the 'Ticker' level to turn it into a column
+    stock_data = stock_data.stack(level=0).rename_axis(['Date', 'Ticker']).reset_index(level=1)
+    # stock_data.index.name = "Date" 
+    # stock_data.reset_index(inplace=True)
     # stock_data = stock_data[["Date","Open", "High", "Low", "Close", "Volume"]]
     return stock_data
 
