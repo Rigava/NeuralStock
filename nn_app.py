@@ -17,13 +17,16 @@ with st.expander("Quick Guide"):
     trading volume, and other financial indicators. Upload a CSV file with the relevant data to 
     train the model and make predictions""")
 # Fetch default stock data (Apple Inc.) from Yahoo Finance
-def fetch_default_data(start_date, end_date):
-    stock_data = yf.download("AAPL", start=start_date, end=end_date)
+def fetch_default_data(symbol, start_date, end_date):
+    stock_data = yf.download(symbol, start=start_date, end=end_date)
+    stock_data.index.name = "Date"  # Rename index to Date
     stock_data.reset_index(inplace=True)
     # stock_data = stock_data[["Open", "High", "Low", "Close", "Volume"]]
     return stock_data
-# Date selection for fetching data
-st.sidebar.write("### Select Date Range for Default Data")
+
+# Sidebar for symbol and date selection
+st.sidebar.write("### Select Stock Symbol and Date Range")
+stock_symbol = st.sidebar.selectbox("Select Stock Symbol", ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA"], index=0)
 default_start_date = st.sidebar.date_input("Start Date", value=pd.to_datetime("2023-01-01"))
 default_end_date = st.sidebar.date_input("End Date", value=pd.to_datetime("2023-12-31"))
 
@@ -32,7 +35,7 @@ if default_start_date >= default_end_date:
     st.sidebar.error("End Date must be after Start Date.")
     default_df = pd.DataFrame()
 else:
-    default_df = fetch_default_data(default_start_date, default_end_date)
+    default_df = fetch_default_data(stock_symbol, default_start_date, default_end_date)
 
 # File upload for dataset
 uploaded_file = st.file_uploader("Upload a CSV file with stock data", type="csv")
