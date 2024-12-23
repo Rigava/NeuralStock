@@ -21,7 +21,7 @@ def fetch_default_data(symbol, start_date, end_date):
     stock_data = yf.download(symbol, start=start_date, end=end_date)
     stock_data.index.name = "Date"  # Rename index to Date
     stock_data.reset_index(inplace=True)
-    # stock_data = stock_data[["Open", "High", "Low", "Close", "Volume"]]
+    # stock_data = stock_data[["Date","Open", "High", "Low", "Close", "Volume"]]
     return stock_data
 
 # Sidebar for symbol and date selection
