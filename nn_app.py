@@ -20,7 +20,7 @@ with st.expander("Quick Guide"):
 def fetch_default_data(start_date, end_date):
     stock_data = yf.download("AAPL", start=start_date, end=end_date)
     stock_data.reset_index(inplace=True)
-    stock_data = stock_data[["Open", "High", "Low", "Close", "Volume"]]
+    # stock_data = stock_data[["Open", "High", "Low", "Close", "Volume"]]
     return stock_data
 # Date selection for fetching data
 st.sidebar.write("### Select Date Range for Default Data")
