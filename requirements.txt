@@ -1,4 +1,5 @@
 yfinance
 scikit-learn
 tensorflow
+matplotlib
 plotly
