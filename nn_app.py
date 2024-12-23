@@ -52,7 +52,7 @@ else:
     data = default_df
     st.write("### Default Dataset Preview")
     st.dataframe(data)
-st.write(f"The shape of actual data is {data.shape}")
+st.write(f"The shape of actual dataset is {data.shape} and column names are {data.columns}")
 #Visualisation of the data
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=data.Date, y=data['Close'], name='Close', line=dict(color='blue')))
