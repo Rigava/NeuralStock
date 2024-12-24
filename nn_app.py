@@ -28,7 +28,7 @@ def fetch_default_data(symbol, start_date, end_date):
 
 # Sidebar for symbol and date selection
 st.sidebar.write("### Select Stock Symbol and Date Range")
-stock_symbol = st.sidebar.selectbox("Select Stock Symbol", ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA"], index=0)
+stock_symbol = st.sidebar.selectbox("Select Stock Symbol", ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA","NSEI"], index=0)
 default_start_date = st.sidebar.date_input("Start Date", value=pd.to_datetime("2023-01-01"))
 default_end_date = st.sidebar.date_input("End Date", value=pd.to_datetime("2023-12-31"))
 
