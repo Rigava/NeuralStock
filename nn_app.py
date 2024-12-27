@@ -29,6 +29,7 @@ def fetch_default_data(symbol, start_date, end_date):
 def create_plots(stocks,default_start_date, default_end_date):
     # data = pd.DataFrame()
     returns = pd.DataFrame()
+    cumulative_returns = pd.DataFrame()
     for stock in stocks:
         data = fetch_default_data(stocks, default_start_date, default_end_date)
         returns[stock] = data['Close'].pct_change()
