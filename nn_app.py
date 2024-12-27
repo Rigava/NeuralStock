@@ -25,9 +25,31 @@ def fetch_default_data(symbol, start_date, end_date):
     stock_data.reset_index(inplace=True)
     # stock_data = stock_data[["Date","Open", "High", "Low", "Close", "Volume"]]
     return stock_data
+# Fetches stock data, calculates returns, and plots daily returns for multiple stocks
+def create_plots(stocks):
+    # data = pd.DataFrame()
+    returns = pd.DataFrame()
+    for stock in stocks:
+        data[stock] = fetch_default_data(stock_symbol, default_start_date, default_end_date)
+        returns[stock] = data['Close'].pct_change()
+    # Plot the returns
+    plt.figure(figsize=(12, 6))
+    for stock in returns.columns:
+        plt.plot(returns.index, returns[stock], label=stock)
 
+    # Add labels, title, and legend
+    plt.title('Daily Returns of Multiple Stocks', fontsize=16)
+    plt.xlabel('Date', fontsize=12)
+    plt.ylabel('Daily Return', fontsize=12)
+    plt.legend(title="Stocks")
+    plt.grid(alpha=0.3)
+    st.pyplot(plt)
+
+stock_list = ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA","^NSEI","^GSPC"]
+create_plots(stock_list)
 # Sidebar for symbol and date selection
 st.sidebar.write("### Select Stock Symbol and Date Range")
+
 stock_symbol = st.sidebar.selectbox("Select Stock Symbol", ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA","^NSEI","^GSPC"], index=0)
 default_start_date = st.sidebar.date_input("Start Date", value=pd.to_datetime("2023-01-01"))
 default_end_date = st.sidebar.date_input("End Date", value=pd.to_datetime("2023-12-31"))
