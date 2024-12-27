@@ -26,7 +26,7 @@ def fetch_default_data(symbol, start_date, end_date):
     # stock_data = stock_data[["Date","Open", "High", "Low", "Close", "Volume"]]
     return stock_data
 # Fetches stock data, calculates returns, and plots daily returns for multiple stocks
-def create_plots(stocks):
+def create_plots(stocks,default_start_date, default_end_date):
     # data = pd.DataFrame()
     returns = pd.DataFrame()
     for stock in stocks:
@@ -45,8 +45,7 @@ def create_plots(stocks):
     plt.grid(alpha=0.3)
     st.pyplot(plt)
 
-stock_list = ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA","^NSEI","^GSPC"]
-create_plots(stock_list)
+
 # Sidebar for symbol and date selection
 st.sidebar.write("### Select Stock Symbol and Date Range")
 
@@ -75,6 +74,12 @@ else:
     st.write("### Default Dataset Preview")
     st.dataframe(data)
 st.write(f"The shape of actual dataset is {data.shape} and column names are {data.columns.tolist()}")
+
+#Visualisation to compare muliple stocks
+stock_list=["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA","^NSEI","^GSPC"]
+create_plots(stock_list,default_start_date, default_end_date)
+
+
 #Visualisation of the data
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=data.Date, y=data['Close'], name='Close', line=dict(color='blue')))
