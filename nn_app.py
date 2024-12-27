@@ -157,6 +157,6 @@ if features and target:
         st.write(f"the predicted value for the next day is {scaler.inverse_transform(prediction)}")
                 
 
-if st.sidebar.button("Fetch and plot multiple stock):
+if st.sidebar.button("Fetch and plot multiple stock"):
                      st.write("WIP")
     
