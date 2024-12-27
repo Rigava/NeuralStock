@@ -157,16 +157,6 @@ if features and target:
         st.write(f"the predicted value for the next day is {scaler.inverse_transform(prediction)}")
                 
 
-
-
-
-
-#     new_data = st.text_area("Enter new data for prediction (comma-separated values):")
-#     if new_data:
-#         try:
-#             new_data = np.array([float(x) for x in new_data.split(",")]).reshape(1, -1)
-#             new_data_scaled = scaler.transform(new_data)
-#             prediction = model.predict(new_data_scaled)
-#             st.write(f"Predicted Value: {prediction[0][0]:.2f}")
-#         except Exception as e:
-#             st.error(f"Error in prediction: {e}")
+if st.sidebar.button("Fetch and plot multiple stock):
+                     st.write("WIP")
+    
