@@ -76,7 +76,7 @@ else:
 st.write(f"The shape of actual dataset is {data.shape} and column names are {data.columns.tolist()}")
 
 #Visualisation to compare muliple stocks
-stock_list=["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA","^NSEI","^GSPC"]
+stock_list=["AAPL"]
 create_plots(stock_list,default_start_date, default_end_date)
 
 
