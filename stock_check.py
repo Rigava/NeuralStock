@@ -92,9 +92,9 @@ def main():
             for stock in cumulative_returns.columns:
                 plt.plot(cumulative_returns.index, cumulative_returns[stock], label=stock)
             
-            plt.title('Cumulative Returns of Multiple Stocks', fontsize=16)
+            plt.title('Comparison of Equity', fontsize=16)
             plt.xlabel('Date', fontsize=12)
-            plt.ylabel('Cumulative Return', fontsize=12)
+            plt.ylabel('Return', fontsize=12)
             plt.legend(title="Stocks")
             plt.grid(alpha=0.3)
             
