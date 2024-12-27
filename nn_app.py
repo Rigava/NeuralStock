@@ -30,7 +30,7 @@ def create_plots(stocks):
     # data = pd.DataFrame()
     returns = pd.DataFrame()
     for stock in stocks:
-        data[stock] = fetch_default_data(stock_symbol, default_start_date, default_end_date)
+        data[stock] = fetch_default_data(stocks, default_start_date, default_end_date)
         returns[stock] = data['Close'].pct_change()
     # Plot the returns
     plt.figure(figsize=(12, 6))
