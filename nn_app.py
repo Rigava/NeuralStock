@@ -27,12 +27,11 @@ def fetch_default_data(symbol, start_date, end_date):
     return stock_data
 # Fetches stock data, calculates returns, and plots daily returns for multiple stocks
 def create_plots(stocks,default_start_date, default_end_date):
-    # data = pd.DataFrame()
     returns = pd.DataFrame()
     cumulative_returns = pd.DataFrame()
     for stock in stocks:
         data = fetch_default_data(stocks, default_start_date, default_end_date)
-        returns[stock] = data['Close'].pct_change()
+        daily_return = data['Close'].pct_change()
         cumulative_returns[stock] = (1 + daily_return).cumprod() - 1
     # Plot the returns
     plt.figure(figsize=(12, 6))
