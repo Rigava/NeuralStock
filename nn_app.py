@@ -24,26 +24,6 @@ def fetch_default_data(symbol, start_date, end_date):
     stock_data.index.name = "Date" 
     stock_data.reset_index(inplace=True)
     return stock_data
-# Fetches stock data, calculates returns, and plots daily returns for multiple stocks
-def create_plots(stocks,default_start_date, default_end_date):
-    returns = pd.DataFrame()
-    cumulative_returns = pd.DataFrame()
-    for stock in stocks:
-        data = fetch_default_data(stocks, default_start_date, default_end_date)
-        data.set_index('Date', inplace=True)
-        daily_return = data['Close'].pct_change()
-        cumulative_returns[stock] = (1 + daily_return).cumprod() - 1
-    # Plot the returns
-    plt.figure(figsize=(12, 6))
-    for stock in cumulative_returns.columns:
-        plt.plot(cumulative_returns.index, cumulative_returns[stock], label=stock)
-    
-    plt.title('Cumulative Returns of Multiple Stocks', fontsize=16)
-    plt.xlabel('Date', fontsize=12)
-    plt.ylabel('Cumulative Return', fontsize=12)
-    plt.legend(title="Stocks")
-    plt.grid(alpha=0.3)
-    st.pyplot(plt)
 
 
 # Sidebar for symbol and date selection
@@ -75,10 +55,6 @@ else:
     st.dataframe(data)
 st.write(f"The shape of actual dataset is {data.shape} and column names are {data.columns.tolist()}")
 
-#Visualisation to compare muliple stocks
-stock_list=["AAPL","MSFT"]
-if st.sidebar.button("Fetch and Plot Data"):
-    create_plots(stock_list,default_start_date, default_end_date)
 
 
 #Visualisation of the data
