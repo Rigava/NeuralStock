@@ -32,15 +32,15 @@ def create_plots(stocks,default_start_date, default_end_date):
     for stock in stocks:
         data = fetch_default_data(stocks, default_start_date, default_end_date)
         returns[stock] = data['Close'].pct_change()
+        cumulative_returns[stock] = (1 + daily_return).cumprod() - 1
     # Plot the returns
     plt.figure(figsize=(12, 6))
-    for stock in returns.columns:
-        plt.plot(returns.index, returns[stock], label=stock)
-
-    # Add labels, title, and legend
-    plt.title('Daily Returns of Multiple Stocks', fontsize=16)
+    for stock in cumulative_returns.columns:
+        plt.plot(cumulative_returns.index, cumulative_returns[stock], label=stock)
+    
+    plt.title('Cumulative Returns of Multiple Stocks', fontsize=16)
     plt.xlabel('Date', fontsize=12)
-    plt.ylabel('Daily Return', fontsize=12)
+    plt.ylabel('Cumulative Return', fontsize=12)
     plt.legend(title="Stocks")
     plt.grid(alpha=0.3)
     st.pyplot(plt)
